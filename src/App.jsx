@@ -3,11 +3,17 @@ import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
 
-function App() {
+// import Components
+import Search from './components/Search';
+import Nav from './components/Nav';
+
+const App = () => {
   const [count, setCount] = useState(0)
 
   return (
     <>
+      <Search />
+      <Nav />
       <div>
         <a href="https://vitejs.dev" target="_blank">
           <img src={viteLogo} className="logo" alt="Vite logo" />
