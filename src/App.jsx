@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import axios from 'axios';
-import {Route, Routes, Navigate} from 'react-router-dom';
+import {Route, Routes, Navigate, useLocation} from 'react-router-dom';
 import apiKey from './config';
 import './App.css'
 
@@ -16,6 +16,7 @@ const App = () => {
   const [photos, setPhotos] = useState([]);
   const [loading, setLoading] = useState(true);
 
+
   useEffect(() => {
     setLoading(true)
     let activeFetch = true;
@@ -23,7 +24,7 @@ const App = () => {
     fetchData(query)
 
     return () => {activeFetch = false}
-  }, [query])
+  }, [query, location])
 
   // function to make API call
   const fetchData = (query) => {

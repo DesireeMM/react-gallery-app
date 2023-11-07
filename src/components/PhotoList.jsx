@@ -7,10 +7,16 @@ import Photo from './Photo';
 const PhotoList = (props) => {
     // declare hooks
     const currentLocation = useLocation();
-    const currentPath = currentLocation.pathname;
 
-    // if the url does not include search, update query to url param
+    // getting url param and trimming /
+    let currentPath = currentLocation.pathname;
+    currentPath = currentPath.replace("/", "");
+   
+    // grab query from URL
     if (!currentPath.includes("search")) {
+        props.changeQuery(currentPath);
+    } else {
+        currentPath = currentPath.replace("search/", "")
         props.changeQuery(currentPath);
     }
 
