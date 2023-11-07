@@ -12,21 +12,25 @@ import NotFound from './components/NotFound';
 
 const App = () => {
   // declare hooks
-  const [query, setQuery] = useState("cats");
+  const [query, setQuery] = useState(null);
   const [photos, setPhotos] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     setLoading(true)
     let activeFetch = true;
-
-    fetchData(query)
+    // only run when there is a query
+    if (!query) {
+      return;
+    } else {
+      fetchData(query)
+    }
 
     return () => {activeFetch = false}
   }, [query])
 
   // function to make API call
-  const fetchData = (query) => {
+  const fetchData = (searchQuery) => {
     axios.get(`https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=${apiKey}&tags=${query}&safe_search=1&per_page=24&format=json&nojsoncallback=1`)
       .then((response) => {
         setPhotos(response.data.photos.photo);
@@ -38,8 +42,8 @@ const App = () => {
   };
 
   // function to update query state
-  const handleQueryChange = (query) => {
-    setQuery(query);
+  const handleQueryChange = (newQuery) => {
+    setQuery(newQuery);
   }
 
   return (
