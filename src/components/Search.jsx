@@ -8,9 +8,9 @@ const Search = (props) => {
     const handleSubmit = (evt) => {
         evt.preventDefault();
         let searchQuery = searchInput.current.value;
+        props.changeQuery(searchQuery);
         let path = `search/${searchQuery}`
         navigate(path);
-        props.changeQuery(searchQuery);
         evt.currentTarget.reset()
     }
     return (

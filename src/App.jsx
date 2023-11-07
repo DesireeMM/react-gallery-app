@@ -11,6 +11,7 @@ import PhotoList from './components/PhotoList'
 import NotFound from './components/NotFound';
 
 const App = () => {
+  // declare hooks
   const [query, setQuery] = useState("cats");
   const [photos, setPhotos] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -24,6 +25,7 @@ const App = () => {
     return () => {activeFetch = false}
   }, [query])
 
+  // function to make API call
   const fetchData = (query) => {
     axios.get(`https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=${apiKey}&tags=${query}&safe_search=1&per_page=24&format=json&nojsoncallback=1`)
       .then((response) => {
@@ -35,6 +37,7 @@ const App = () => {
       })
   };
 
+  // function to update query state
   const handleQueryChange = (query) => {
     setQuery(query);
   }
@@ -51,19 +54,19 @@ const App = () => {
           loading={loading} 
           changeQuery={handleQueryChange} />} 
         />
-        <Route path="/dogs" element={<PhotoList 
+        <Route path="dogs" element={<PhotoList 
           data={photos} 
           title={query} 
           loading={loading} 
           changeQuery={handleQueryChange} />}
         />
-        <Route path="/computers" element={<PhotoList 
+        <Route path="computers" element={<PhotoList 
           data={photos} 
           title={query} 
           loading={loading} 
           changeQuery={handleQueryChange} />}
         />
-        <Route path="/search/:query" element={<PhotoList
+        <Route path="search/:query" element={<PhotoList
           data={photos} 
           title={query} 
           loading={loading} 
