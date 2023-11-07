@@ -64,9 +64,9 @@ const App = () => {
           loading={loading} 
           changeQuery={handleQueryChange} />}
         />
-        <Route path="computers" element={<PhotoList 
+        <Route path="bears" element={<PhotoList 
           data={photos} 
-          title={"computers"} 
+          title={"bears"} 
           loading={loading} 
           changeQuery={handleQueryChange} />}
         />

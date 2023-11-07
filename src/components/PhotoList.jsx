@@ -16,6 +16,7 @@ const PhotoList = (props) => {
         }
     }, [query, props.title]);
 
+    // get search results from props
     const searchResults = props.data;
     let photos;
     if (searchResults.length > 0 && !props.loading) {
@@ -32,7 +33,12 @@ const PhotoList = (props) => {
         photos = 'Loading...'
     } else {
         // display friendly message when there are no search results
-        photos = 'Sorry, your search did not yield any results.'
+        return (
+            <div className="photo-container">
+                <h2>No Results Found</h2>
+                <p>Sorry, your search did not yield any results.</p>
+            </div>
+        )
     }
 
     return (
