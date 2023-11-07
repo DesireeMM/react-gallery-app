@@ -1,26 +1,36 @@
-import React, {memo} from 'react';
-import {useLocation} from 'react-router-dom';
+import React, {useEffect} from 'react';
+import {useParams} from 'react-router-dom';
 
 // import components
 import Photo from './Photo';
 
 const PhotoList = (props) => {
     // declare hooks
-    const currentLocation = useLocation();
+    const {query} = useParams()
 
-    // getting url param and trimming /
-    let currentPath = currentLocation.pathname;
-    currentPath = currentPath.replace("/", "");
+    useEffect(() => {
+        if (query) {
+            props.changeQuery(query);
+        } else {
+            props.changeQuery(props.title);
+        }
+    }, [query]);
+    // const currentLocation = useLocation();
+
+    // // getting url param and trimming /
+    // let currentPath = currentLocation.pathname;
+    // currentPath = currentPath.replace("/", "");
    
-    // grab query from URL
-    if (!currentPath.includes("search")) {
-        props.changeQuery(currentPath);
-    } else {
-        currentPath = currentPath.replace("search/", "")
-        props.changeQuery(currentPath);
-    }
+    // // grab query from URL
+    // if (!currentPath.includes("search")) {
+    //     props.changeQuery(currentPath);
+    // } else {
+    //     currentPath = currentPath.replace("search/", "")
+    //     props.changeQuery(currentPath);
+    // }
 
-    props.changeLocation(currentLocation);
+    // props.changeLocation(currentLocation);
+
 
     const searchResults = props.data;
     let photos;
