@@ -15,6 +15,7 @@ const App = () => {
   const [query, setQuery] = useState("cats");
   const [photos, setPhotos] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [location, setLocation] = useState("");
 
 
   useEffect(() => {
@@ -43,6 +44,11 @@ const App = () => {
     setQuery(query);
   }
 
+  // function to update location
+  const handleLocationChange = (newLocation) => {
+    setLocation(newLocation)
+  }
+
   return (
     <>
       <Search changeQuery={handleQueryChange}/>
@@ -53,25 +59,29 @@ const App = () => {
           data={photos} 
           title={query} 
           loading={loading} 
-          changeQuery={handleQueryChange} />} 
+          changeQuery={handleQueryChange}
+          changeLocation={handleLocationChange} />} 
         />
         <Route path="dogs" element={<PhotoList 
           data={photos} 
           title={query} 
           loading={loading} 
-          changeQuery={handleQueryChange} />}
+          changeQuery={handleQueryChange}
+          changeLocation={handleLocationChange} />}
         />
         <Route path="computers" element={<PhotoList 
           data={photos} 
           title={query} 
           loading={loading} 
-          changeQuery={handleQueryChange} />}
+          changeQuery={handleQueryChange}
+          changeLocation={handleLocationChange} />}
         />
         <Route path="search/:query" element={<PhotoList
           data={photos} 
           title={query} 
           loading={loading} 
-          changeQuery={handleQueryChange} />} 
+          changeQuery={handleQueryChange}
+          changeLocation={handleLocationChange} />} 
         />
         <Route path="*" element={<NotFound />} />
       </Routes>

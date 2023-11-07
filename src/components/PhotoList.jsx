@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {memo} from 'react';
 import {useLocation} from 'react-router-dom';
 
 // import components
@@ -19,6 +19,8 @@ const PhotoList = (props) => {
         currentPath = currentPath.replace("search/", "")
         props.changeQuery(currentPath);
     }
+
+    props.changeLocation(currentLocation);
 
     const searchResults = props.data;
     let photos;
