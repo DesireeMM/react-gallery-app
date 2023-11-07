@@ -14,23 +14,7 @@ const PhotoList = (props) => {
         } else {
             props.changeQuery(props.title);
         }
-    }, [query]);
-    // const currentLocation = useLocation();
-
-    // // getting url param and trimming /
-    // let currentPath = currentLocation.pathname;
-    // currentPath = currentPath.replace("/", "");
-   
-    // // grab query from URL
-    // if (!currentPath.includes("search")) {
-    //     props.changeQuery(currentPath);
-    // } else {
-    //     currentPath = currentPath.replace("search/", "")
-    //     props.changeQuery(currentPath);
-    // }
-
-    // props.changeLocation(currentLocation);
-
+    }, [query, props.title]);
 
     const searchResults = props.data;
     let photos;
@@ -48,7 +32,7 @@ const PhotoList = (props) => {
         photos = 'Loading...'
     } else {
         // display friendly message when there are no search results
-        photos = 'No results found'
+        photos = 'Sorry, your search did not yield any results.'
     }
 
     return (

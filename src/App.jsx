@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import axios from 'axios';
-import {Route, Routes, Navigate, useLocation} from 'react-router-dom';
+import {Route, Routes, Navigate} from 'react-router-dom';
 import apiKey from './config';
 import './App.css'
 
@@ -15,8 +15,6 @@ const App = () => {
   const [query, setQuery] = useState("cats");
   const [photos, setPhotos] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [location, setLocation] = useState("");
-
 
   useEffect(() => {
     setLoading(true)
@@ -25,7 +23,7 @@ const App = () => {
     fetchData(query)
 
     return () => {activeFetch = false}
-  }, [query, location])
+  }, [query])
 
   // function to make API call
   const fetchData = (query) => {
@@ -44,11 +42,6 @@ const App = () => {
     setQuery(query);
   }
 
-  // function to update location
-  const handleLocationChange = (newLocation) => {
-    setLocation(newLocation)
-  }
-
   return (
     <>
       <Search changeQuery={handleQueryChange}/>
@@ -57,31 +50,27 @@ const App = () => {
         <Route path="/" element={<Navigate to="/cats" />}/>
         <Route path="/cats" element={<PhotoList 
           data={photos} 
-          title={query} 
+          title={"cats"} 
           loading={loading} 
-          changeQuery={handleQueryChange}
-          changeLocation={handleLocationChange} />} 
+          changeQuery={handleQueryChange} />} 
         />
         <Route path="dogs" element={<PhotoList 
           data={photos} 
-          title={query} 
+          title={"dogs"} 
           loading={loading} 
-          changeQuery={handleQueryChange}
-          changeLocation={handleLocationChange} />}
+          changeQuery={handleQueryChange} />}
         />
         <Route path="computers" element={<PhotoList 
           data={photos} 
-          title={query} 
+          title={"computers"} 
           loading={loading} 
-          changeQuery={handleQueryChange}
-          changeLocation={handleLocationChange} />}
+          changeQuery={handleQueryChange} />}
         />
         <Route path="search/:query" element={<PhotoList
           data={photos} 
           title={query} 
           loading={loading} 
-          changeQuery={handleQueryChange}
-          changeLocation={handleLocationChange} />} 
+          changeQuery={handleQueryChange} />} 
         />
         <Route path="*" element={<NotFound />} />
       </Routes>
