@@ -1,4 +1,4 @@
-# Treehouse FSJS Techdegree Unit 6 Project
+# Treehouse FSJS Techdegree Unit 7 Project
 
 Learn more about the developer on [LinkedIn](https://www.linkedin.com/in/desiree-morimoto-9470481b0/)
 
